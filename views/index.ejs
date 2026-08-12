@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Math Battle - 1000 Levels</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+
+    <div class="background">
+
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+        <div class="shape shape4"></div>
+
+    </div>
+
+
+    <!-- Main Game -->
+
+    <main class="game-container">
+
+        <!-- Header -->
+
+        <header class="game-header">
+
+            <div class="logo">
+                🧠 MATH BATTLE
+            </div>
+
+            <h1>
+                ⚡ 1000 LEVEL CHALLENGE ⚡
+            </h1>
+
+            <p>
+                Solve the math question and unlock the next level!
+            </p>
+
+        </header>
+
+
+        <!-- Statistics -->
+
+        <section class="stats">
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    🏆
+                </div>
+
+                <div>
+                    <span>Score</span>
+                    <strong id="score">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    🔥
+                </div>
+
+                <div>
+                    <span>Streak</span>
+                    <strong id="streak">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    ❤️
+                </div>
+
+                <div>
+                    <span>Lives</span>
+                    <strong id="lives">3</strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    🎯
+                </div>
+
+                <div>
+                    <span>Level</span>
+                    <strong id="level">1</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Level Progress -->
+
+        <section class="progress-section">
+
+            <div class="progress-top">
+
+                <span>
+                    LEVEL PROGRESS
+                </span>
+
+                <span id="progressText">
+                    1 / 1000
+                </span>
+
+            </div>
+
+            <div class="progress-bar">
+
+                <div
+                    id="progress"
+                    class="progress"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Game Card -->
+
+        <section class="game-card">
+
+            <div class="level-badge">
+
+                LEVEL
+                <span id="levelBadge">
+                    1
+                </span>
+
+            </div>
+
+
+            <div class="question-title">
+
+                <span>🧮</span>
+
+                SOLVE THE QUESTION
+
+                <span>🧮</span>
+
+            </div>
+
+
+            <div
+                id="question"
+                class="question"
+            >
+                5 + 5 = ?
+            </div>
+
+
+            <div class="answer-area">
+
+                <input
+                    id="answer"
+                    type="number"
+                    placeholder="Enter your answer"
+                    autocomplete="off"
+                >
+
+
+                <button
+                    id="submitBtn"
+                    onclick="checkAnswer()"
+                >
+                    🚀 SUBMIT
+                </button>
+
+            </div>
+
+
+            <div
+                id="message"
+                class="message"
+            ></div>
+
+
+            <button
+                id="nextBtn"
+                class="next-button"
+                onclick="nextLevel()"
+            >
+                🔓 NEXT LEVEL
+            </button>
+
+        </section>
+
+
+        <!-- Difficulty -->
+
+        <div class="difficulty">
+
+            <span>
+                Difficulty:
+            </span>
+
+            <strong id="difficulty">
+                EASY
+            </strong>
+
+        </div>
+
+
+        <!-- Game Information -->
+
+        <section class="info">
+
+            <div>
+                <span>🏁</span>
+                <p>1000 Levels</p>
+            </div>
+
+            <div>
+                <span>🧠</span>
+                <p>Math Challenge</p>
+            </div>
+
+            <div>
+                <span>🔥</span>
+                <p>Build Streak</p>
+            </div>
+
+            <div>
+                <span>🏆</span>
+                <p>Beat The Game</p>
+            </div>
+
+        </section>
+
+
+        <!-- Restart -->
+
+        <button
+            id="restartBtn"
+            onclick="restartGame()"
+        >
+            🔄 RESTART GAME
+        </button>
+
+    </main>
+
+
+    <!-- Level 1000 Complete -->
+
+    <div
+        id="completeScreen"
+        class="overlay"
+    >
+
+        <div class="popup complete-popup">
+
+            <div class="big-icon">
+                🏆
+            </div>
+
+            <h2>
+                CONGRATULATIONS!
+            </h2>
+
+            <p>
+                You completed all
+            </p>
+
+            <div class="thousand">
+                1000
+            </div>
+
+            <p>
+                levels!
+            </p>
+
+            <div class="final-score">
+                Final Score:
+                <strong id="finalScore">
+                    0
+                </strong>
+            </div>
+
+            <p class="restart-text">
+                The challenge will now restart
+                from Level 1.
+            </p>
+
+            <button onclick="startFromLevelOne()">
+                🚀 START LEVEL 1
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Game Over -->
+
+    <div
+        id="gameOver"
+        class="overlay"
+    >
+
+        <div class="popup">
+
+            <div class="big-icon">
+                💥
+            </div>
+
+            <h2>
+                GAME OVER
+            </h2>
+
+            <p>
+                You reached:
+            </p>
+
+            <div
+                id="gameOverLevel"
+                class="game-over-level"
+            >
+                Level 1
+            </div>
+
+            <p>
+                Final Score:
+            </p>
+
+            <div
+                id="gameOverScore"
+                class="final-score"
+            >
+                0
+            </div>
+
+            <button onclick="restartGame()">
+                🎮 TRY AGAIN
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // ========================================
+        // GAME SETTINGS
+        // ========================================
+
+        const MAX_LEVEL = 1000;
+
+        let level = 1;
+        let score = 0;
+        let streak = 0;
+        let lives = 3;
+
+        let correctAnswer = 0;
+        let answered = false;
+
+
+        // ========================================
+        // HTML ELEMENTS
+        // ========================================
+
+        const questionElement =
+            document.getElementById("question");
+
+        const answerElement =
+            document.getElementById("answer");
+
+        const scoreElement =
+            document.getElementById("score");
+
+        const streakElement =
+            document.getElementById("streak");
+
+        const livesElement =
+            document.getElementById("lives");
+
+        const levelElement =
+            document.getElementById("level");
+
+        const levelBadge =
+            document.getElementById("levelBadge");
+
+        const messageElement =
+            document.getElementById("message");
+
+        const submitButton =
+            document.getElementById("submitBtn");
+
+        const nextButton =
+            document.getElementById("nextBtn");
+
+        const progress =
+            document.getElementById("progress");
+
+        const progressText =
+            document.getElementById("progressText");
+
+        const difficultyElement =
+            document.getElementById("difficulty");
+
+
+        // ========================================
+        // RANDOM NUMBER
+        // ========================================
+
+        function randomNumber(min, max) {
+
+            return Math.floor(
+                Math.random() * (max - min + 1)
+            ) + min;
+
+        }
+
+
+        // ========================================
+        // CREATE QUESTION
+        // ========================================
+
+        function generateQuestion() {
+
+            let number1;
+            let number2;
+            let operator;
+
+            /*
+                Difficulty increases with levels.
+
+                1 - 100      = Easy
+                101 - 300    = Normal
+                301 - 600    = Medium
+                601 - 800    = Hard
+                801 - 1000   = Expert
+            */
+
+
+            if (level <= 100) {
+
+                operator =
+                    ["+", "-"][
+                        randomNumber(0, 1)
+                    ];
+
+                number1 =
+                    randomNumber(1, 20);
+
+                number2 =
+                    randomNumber(1, 20);
+
+            }
+
+
+            else if (level <= 300) {
+
+                operator =
+                    ["+", "-", "×"][
+                        randomNumber(0, 2)
+                    ];
+
+                number1 =
+                    randomNumber(1, 50);
+
+                number2 =
+                    randomNumber(1, 30);
+
+            }
+
+
+            else if (level <= 600) {
+
+                operator =
+                    ["+", "-", "×", "÷"][
+                        randomNumber(0, 3)
+                    ];
+
+                number1 =
+                    randomNumber(10, 100);
+
+                number2 =
+                    randomNumber(2, 20);
+
+            }
+
+
+            else if (level <= 800) {
+
+                operator =
+                    ["+", "-", "×", "÷"][
+                        randomNumber(0, 3)
+                    ];
+
+                number1 =
+                    randomNumber(20, 200);
+
+                number2 =
+                    randomNumber(2, 30);
+
+            }
+
+
+            else {
+
+                operator =
+                    ["+", "-", "×", "÷"][
+                        randomNumber(0, 3)
+                    ];
+
+                number1 =
+                    randomNumber(50, 500);
+
+                number2 =
+                    randomNumber(2, 50);
+
+            }
+
+
+            // Make subtraction positive
+
+            if (
+                operator === "-"
+                &&
+                number2 > number1
+            ) {
+
+                [
+                    number1,
+                    number2
+                ] = [
+                    number2,
+                    number1
+                ];
+
+            }
+
+
+            // Make division answer a whole number
+
+            if (operator === "÷") {
+
+                number1 =
+                    number2 *
+                    randomNumber(1, 10);
+
+            }
+
+
+            // Calculate answer
+
+            switch (operator) {
+
+                case "+":
+
+                    correctAnswer =
+                        number1 + number2;
+
+                    break;
+
+
+                case "-":
+
+                    correctAnswer =
+                        number1 - number2;
+
+                    break;
+
+
+                case "×":
+
+                    correctAnswer =
+                        number1 * number2;
+
+                    break;
+
+
+                case "÷":
+
+                    correctAnswer =
+                        number1 / number2;
+
+                    break;
+
+            }
+
+
+            questionElement.textContent =
+                `${number1} ${operator} ${number2} = ?`;
+
+
+            answerElement.value = "";
+
+            answerElement.focus();
+
+            answered = false;
+
+            submitButton.style.display =
+                "block";
+
+            nextButton.style.display =
+                "none";
+
+
+            messageElement.textContent =
+                "";
+
+            messageElement.className =
+                "message";
+
+
+            updateDifficulty();
+
+        }
+
+
+        // ========================================
+        // CHECK ANSWER
+        // ========================================
+
+        function checkAnswer() {
+
+            if (answered) {
+                return;
+            }
+
+
+            const userAnswer =
+                Number(answerElement.value);
+
+
+            if (answerElement.value === "") {
+
+                showMessage(
+                    "⚠️ Please enter an answer!",
+                    "warning"
+                );
+
+                return;
+
+            }
+
+
+            answered = true;
+
+
+            // Correct
+
+            if (
+                userAnswer === correctAnswer
+            ) {
+
+                const bonus =
+                    Math.min(streak * 2, 20);
+
+                score +=
+                    10 + bonus;
+
+                streak++;
+
+
+                showMessage(
+                    "🎉 CORRECT! Excellent!",
+                    "correct"
+                );
+
+
+                questionElement.classList.add(
+                    "correct-animation"
+                );
+
+
+                submitButton.style.display =
+                    "none";
+
+
+                if (level < MAX_LEVEL) {
+
+                    nextButton.style.display =
+                        "block";
+
+                }
+
+
+                updateStats();
+
+            }
+
+
+            // Wrong
+
+            else {
+
+                lives--;
+
+                streak = 0;
+
+
+                showMessage(
+                    `❌ Wrong! Correct answer is ${correctAnswer}`,
+                    "wrong"
+                );
+
+
+                questionElement.classList.add(
+                    "wrong-animation"
+                );
+
+
+                submitButton.style.display =
+                    "none";
+
+
+                updateStats();
+
+
+                if (lives <= 0) {
+
+                    setTimeout(
+                        gameOver,
+                        1000
+                    );
+
+                    return;
+
+                }
+
+
+                nextButton.style.display =
+                    "block";
+
+            }
+
+
+            setTimeout(() => {
+
+                questionElement.classList.remove(
+                    "correct-animation"
+                );
+
+                questionElement.classList.remove(
+                    "wrong-animation"
+                );
+
+            }, 600);
+
+        }
+
+
+        // ========================================
+        // NEXT LEVEL
+        // ========================================
+
+        function nextLevel() {
+
+            if (level >= MAX_LEVEL) {
+
+                completeGame();
+
+                return;
+
+            }
+
+
+            level++;
+
+            updateStats();
+
+            generateQuestion();
+
+        }
+
+
+        // ========================================
+        // UPDATE STATS
+        // ========================================
+
+        function updateStats() {
+
+            scoreElement.textContent =
+                score;
+
+            streakElement.textContent =
+                streak;
+
+            livesElement.textContent =
+                lives;
+
+            levelElement.textContent =
+                level;
+
+            levelBadge.textContent =
+                level;
+
+
+            progressText.textContent =
+                `${level} / ${MAX_LEVEL}`;
+
+
+            const percent =
+                ((level - 1) / MAX_LEVEL) * 100;
+
+
+            progress.style.width =
+                `${percent}%`;
+
+
+            // Low lives animation
+
+            if (lives <= 1) {
+
+                livesElement.classList.add(
+                    "danger"
+                );
+
+            }
+
+            else {
+
+                livesElement.classList.remove(
+                    "danger"
+                );
+
+            }
+
+        }
+
+
+        // ========================================
+        // DIFFICULTY
+        // ========================================
+
+        function updateDifficulty() {
+
+            let difficulty = "EASY";
+
+            if (level <= 100) {
+
+                difficulty = "EASY";
+
+            }
+
+            else if (level <= 300) {
+
+                difficulty = "NORMAL";
+
+            }
+
+            else if (level <= 600) {
+
+                difficulty = "MEDIUM";
+
+            }
+
+            else if (level <= 800) {
+
+                difficulty = "HARD";
+
+            }
+
+            else {
+
+                difficulty = "EXPERT";
+
+            }
+
+
+            difficultyElement.textContent =
+                difficulty;
+
+
+            difficultyElement.className =
+                difficulty.toLowerCase();
+
+        }
+
+
+        // ========================================
+        // MESSAGE
+        // ========================================
+
+        function showMessage(
+            text,
+            type
+        ) {
+
+            messageElement.textContent =
+                text;
+
+            messageElement.className =
+                `message ${type}`;
+
+        }
+
+
+        // ========================================
+        // GAME OVER
+        // ========================================
+
+        function gameOver() {
+
+            document.getElementById(
+                "gameOver"
+            ).classList.add("show");
+
+
+            document.getElementById(
+                "gameOverLevel"
+            ).textContent =
+                `Level ${level}`;
+
+
+            document.getElementById(
+                "gameOverScore"
+            ).textContent =
+                score;
+
+        }
+
+
+        // ========================================
+        // COMPLETE 1000 LEVELS
+        // ========================================
+
+        function completeGame() {
+
+            document.getElementById(
+                "finalScore"
+            ).textContent =
+                score;
+
+
+            document.getElementById(
+                "completeScreen"
+            ).classList.add("show");
+
+        }
+
+
+        // ========================================
+        // START FROM LEVEL 1
+        // ========================================
+
+        function startFromLevelOne() {
+
+            level = 1;
+
+            score = 0;
+
+            streak = 0;
+
+            lives = 3;
+
+
+            document.getElementById(
+                "completeScreen"
+            ).classList.remove("show");
+
+
+            updateStats();
+
+            generateQuestion();
+
+        }
+
+
+        // ========================================
+        // RESTART GAME
+        // ========================================
+
+        function restartGame() {
+
+            level = 1;
+
+            score = 0;
+
+            streak = 0;
+
+            lives = 3;
+
+
+            document.getElementById(
+                "gameOver"
+            ).classList.remove("show");
+
+
+            document.getElementById(
+                "completeScreen"
+            ).classList.remove("show");
+
+
+            updateStats();
+
+            generateQuestion();
+
+        }
+
+
+        // ========================================
+        // ENTER KEY
+        // ========================================
+
+        answerElement.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Enter"
+                    &&
+                    !answered
+                ) {
+
+                    checkAnswer();
+
+                }
+
+            }
+        );
+
+
+        // ========================================
+        // START GAME
+        // ========================================
+
+        updateStats();
+
+        generateQuestion();
+
+    </script>
+
+</body>
+
+</html>
